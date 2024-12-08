@@ -56,6 +56,14 @@ class FeedFragment : Fragment() {
                     Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
             }
+
+            /////////////////////////////////////////////
+            //IMAGE
+            fun onImage(image: String) {
+                findNavController().navigate(R.id.action_feedFragment_to_imageFragment)
+            }
+            /////////////////////////////////////////////
+
         })
         binding.list.adapter = adapter
         viewModel.dataState.observe(viewLifecycleOwner) { state ->
@@ -103,6 +111,7 @@ class FeedFragment : Fragment() {
         binding.swiperefresh.setOnRefreshListener {
             viewModel.refreshPosts()
         }
+
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
