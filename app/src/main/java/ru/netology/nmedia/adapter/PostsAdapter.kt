@@ -1,5 +1,6 @@
 package ru.netology.nmedia.adapter
 
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
     fun onShare(post: Post) {}
+    fun onImage(image: String) {}
 }
 
 class PostsAdapter(
@@ -62,6 +64,12 @@ class PostViewHolder(
                 attachment.load("${BuildConfig.BASE_URL}/media/${post.attachment?.url}")
             } else {
                 attachment.visibility = View.GONE
+            }
+
+            attachment.setOnClickListener {
+                post.attachment?.let { attach ->
+                    onInteractionListener.onImage(attach.url)
+                }
             }
             //////////////////////////////////////////
 

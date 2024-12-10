@@ -59,8 +59,11 @@ class FeedFragment : Fragment() {
 
             /////////////////////////////////////////////
             //IMAGE
-            fun onImage(image: String) {
-                findNavController().navigate(R.id.action_feedFragment_to_imageFragment)
+            override fun onImage(image: String) {
+                val bundle = Bundle().apply {
+                    putString("image", image)
+                }
+                findNavController().navigate(R.id.action_feedFragment_to_imageFragment, bundle)
             }
             /////////////////////////////////////////////
 
